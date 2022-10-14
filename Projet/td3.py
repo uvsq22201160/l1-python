@@ -8,7 +8,7 @@ def tempsEnSeconde(temps):
 
 def secondeEnTemps(seconde):
     """Renvoie le temps (jour, heure, minute, seconde) qui correspond au nombre de seconde passé en argument"""
-    temps = (seconde//86400, (seconde//3600) - (24*(seconde//86400)), (seconde//60) - (60*(seconde//3600)), seconde % 60)
+    temps = (seconde//86400, (seconde % 86400) // 3600, (seconde % 3600) // 60, seconde % 60)
     return temps
 
 #temps = secondeEnTemps(100000)
@@ -65,12 +65,50 @@ def proportionTemps(temps,proportion):
 #afficheTemps(proportionTemps((2,0,36,0),0.2))
 
 def tempsEnDate(temps):
+    année = 1970 + (temps[0] // 365)
+    mois = (temps[0] % année) // 31
+    jour = 0
+    if année % 4 == 0 and not année % 100 == 0:
+        if mois == 2:
+            mois = (temps[0] % année) // 29
+            jour = temps[0] % mois
+        elif (mois % 2 == 0) or mois == 7:
+            mois = (temps[0] % année) // 30
+            jour = temps[0] % mois
+        else:
+            mois = (temps[0] % année) // 30
+            jour = temps[0] % mois
+    else:
+        if mois == 2:
+            mois = (temps[0] % année) // 28
+            jour = temps[0] % mois
+        elif (mois % 2 == 0) or mois == 7:
+            mois = (temps[0] % année) // 30
+            jour = temps[0] % mois
+        else:
+            mois = (temps[0] % année) // 30
+            jour = temps[0] % mois
     
+    temps_date = (année, mois, jour, temps[1], temps[2], temps[3])
+    return temps_date
 
 def afficheDate(date = -1):
+    mot_pluriel = "s"
+    Mois = ["", "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre"]
+    Temps = ["année", "mois", "jour", "heure", "minute", "seconde"]
+    for i in range(6):
+        if i == 1:
+            print(temps[i], , end=" ")
+        elif temps[i] == 0:
+            print("", end=" ")
+        elif temps[i] > 1:
+            print(temps[i], Temps[i] + mot_pluriel, end=" ")
+        else:
+            print(temps[i], Temps[i], end=" ")
     
     
 temps = secondeEnTemps(1000000000)
 afficheTemps(temps)
+tempsEnDate(temps)
 afficheDate(tempsEnDate(temps))
 afficheDate()
