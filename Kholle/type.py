@@ -21,10 +21,9 @@ def Permutation(var1, var2):
         var1, var2 = var2, var1
     else:
         var1, var2 = var1 ** var2, var1 * var2
-    
     return var1, var2
 
-def PGCD(a, b):
+def PGCD(a,b):
     pgcd = 1
     i = 1
     if a >= b:
@@ -61,7 +60,7 @@ def Divisible_par2():
     divisible = 0
     while x % 2 == 0:
         divisible += 1
-        x = int(x / 2) 
+        x = int(x / 2)
 
     return divisible
 
@@ -72,7 +71,7 @@ def Diviseurs():
     verif = 0 #permettra de vérifier si le nombre possède un diviseur, et dans le cas contraire pouvoir afficher qu'il est un nombre premier
 
     while x < 1: #vérifie que le nombre est bien strictement supérieur à 1
-        x = int(input("Veuillez recommencer en saisissant un entier strictement supérieur à 1 :\n"))
+        x = int(input("Veuillez saisir un entier strictement supérieur à 1 :\n"))
 
     for i in range(2, x): 
         if x % i == 0:
@@ -85,7 +84,7 @@ def Diviseurs():
         print(x, "est donc une nombre premier")
 
 def Liste_into_number(x):
-    '''Transforme les données d'une liste ou d'un tuple en une chaîne de caractère espacé'''
+    '''Transforme les données d'une liste ou d'un tuple en une chaîne de caractère espacée'''
     a = ""
     for i in x:
         a += str(i) + " "
@@ -101,4 +100,3 @@ def Longueur():
     h_marche = int(input("Quelle hauteur pour les marches ?\n"))
 
     return hauteurParcourue(nb_marche, h_marche)
-
