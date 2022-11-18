@@ -2,19 +2,23 @@ import time, calendar
 
 def tempsEnSeconde(temps):
     """ Renvoie la valeur en seconde de temps donné comme jour, heure, minute, seconde."""
-    return temps[0]*86400 + temps[1]*3600 + temps[2]*60 + temps[3]
+    return (temps[0]*86400 + temps[1]*3600 + temps[2]*60 + temps[3])
 
-#temps = (3,23,1,34)
+temps = (3,23,1,34)
 #print(type(temps))
-#print(tempsEnSeconde(temps))   
+print(tempsEnSeconde(temps))   
 
 def secondeEnTemps(seconde):
     """Renvoie le temps (jour, heure, minute, seconde) qui correspond au nombre de seconde passé en argument"""
-    temps = (seconde//86400, (seconde % 86400) // 3600, (seconde % 3600) // 60, seconde % 60)
-    return temps
+    min = seconde // 60
+    seconde %= 60
+    heure = min//60
+    min %= 60
+    jour = heure//24
+    heure %= 24
+    return (jour, heure, min, seconde)
 
-#temps = secondeEnTemps(100000)
-#print(temps[0],"jours",temps[1],"heures",temps[2],"minutes",temps[3],"secondes")
+temps = secondeEnTemps(100000)
 
 #fonction auxiliaire ici
 
@@ -74,10 +78,10 @@ def afficheDate(date = -1):
             print(date[i], Temps[i], end=" ")
     
  
-temps = secondeEnTemps(1000000000)
-afficheTemps(temps)
-tempsEnDate(temps)
-afficheDate(tempsEnDate(temps))
+#temps = secondeEnTemps(1000000000)
+#afficheTemps(temps)
+#tempsEnDate(temps)
+#afficheDate(tempsEnDate(temps))
 #afficheDate()
 
 def nombreBisextile(jour):
