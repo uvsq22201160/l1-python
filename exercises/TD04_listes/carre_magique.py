@@ -63,16 +63,17 @@ def estNormal(carre):
     """ Retourne True si contient toutes les valeurs de 1 à n^2 où n est la taille 
         du carré, et False sinon """
     ordre = len(carre)
-    x = 0 #nombre entre 1 et n^2 présent dans le carré
-    for i in range(1, ordre**2 + 1):
-        for j in range(ordre):
-            if i in carre[j]:
-                x += 1
-    if x == ordre**2:
-        return True
-    else:
-        return False
-
+    liste = []
+    normal = True
+    for j in range(len(carre)):
+        for i in range(len(carre[j])):
+            liste.append(carre[j][i])
+    liste.sort()
+    for k in range(1, len(liste) + 1):
+        if k != liste[k - 1]:
+            normal = False
+    return normal
+        
 print(estNormal(carre_mag))
 print(estNormal(carre_pas_mag))
 
