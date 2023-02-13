@@ -73,7 +73,3 @@ def estNormal(carre):
         if k != liste[k - 1]:
             normal = False
     return normal
-        
-print(estNormal(carre_mag))
-print(estNormal(carre_pas_mag))
-
